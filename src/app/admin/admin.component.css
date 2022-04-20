@@ -1,0 +1,3 @@
+:host ::ng-deep .mat-ripple-element {
+  position: absolute;
+}

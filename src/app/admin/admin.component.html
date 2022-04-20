@@ -1,0 +1,51 @@
+<mat-tab-group mat-align-tabs="center" style="display: flex; align-items: center; justify-content: center;">
+    <mat-tab label="Accounts">
+        <div class="header my-5" style="text-align: center;">
+            <h3>
+                Add New User
+            </h3>
+        </div>
+        <div class="card" style="padding: 20px; width: 500px">
+            <form (ngSubmit)="addUser()" [formGroup]="addUserForm">
+                <input type="text" name="firstName" id="firstName" placeholder="Enter First Name"
+                    class="form-control mb-3" formControlName="firstName">
+                <input type="text" name="lastName" id="lastName" placeholder="Enter Last Name" class="form-control mb-3"
+                    formControlName="lastName">
+                <input type="text" name="username" id="username" placeholder="Enter username" class="form-control mb-3"
+                    formControlName="username">
+                <input type="number" name="mobile" id="mobile" placeholder="Enter Mobile Number"
+                    class="form-control mb-3" formControlName="mobile">
+                <input type="password" name="userPassword" id="userPassword" placeholder="Enter password"
+                    class="form-control mb-3" formControlName="password">
+
+                <input type="submit" value="Add User" class="btn btn-outline-primary form-control rounded-0">
+            </form>
+        </div>
+    </mat-tab>
+    <mat-tab label="Flights">
+        <div class="header my-5" style="text-align: center;">
+            <h3>
+                Add New Flight Details
+            </h3>
+        </div>
+        <div class="card" style="padding: 20px; width: 500px">
+            <form (ngSubmit)="addFlight()" [formGroup]="addFlightDetailsForm">
+                <input type="text" name="id" id="id" placeholder="Enter Flight ID" class="form-control mb-3"
+                    formControlName="id">
+                <input type="text" name="flightNumber" id="flightNumber" placeholder="Enter Flight Number"
+                    class="form-control mb-3" formControlName="flightNumber">
+                <input type="text" name="source" id="source" placeholder="Enter Flight Source" class="form-control mb-3"
+                    formControlName="source">
+                <input type="text" name="destination" id="destination" placeholder="Enter Flight Destination"
+                    class="form-control mb-3" formControlName="destination">
+                <input type="date" name="date" id="date" placeholder="Enter Flight Date" class="form-control mb-3"
+                    formControlName="date">
+                <input type="number" name="fare" id="fare" placeholder="Enter Flight Fare" class="form-control mb-3"
+                    formControlName="fare">
+
+                <input type="submit" value="Add Flight" class="btn btn-outline-primary form-control rounded-0">
+            </form>
+        </div>
+    </mat-tab>
+    <mat-tab label="Airports"> Airport Details to be shown here.</mat-tab>
+</mat-tab-group>
