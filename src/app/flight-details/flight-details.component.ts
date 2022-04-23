@@ -14,7 +14,6 @@ export class FlightDetailsComponent implements OnInit {
     ngOnInit(): void {
         this.userService.getFlights().subscribe(
             (response: any) => {
-                console.log('-----', response)
                 this.dataSource = response;
             },
             (error: any) => {

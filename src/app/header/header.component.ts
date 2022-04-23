@@ -4,26 +4,29 @@ import { UserAuthService } from '../_services/user-auth.service';
 import { UserService } from '../_services/user.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(
-    private userAuthService: UserAuthService,
-    private router: Router,
-    public userService: UserService
-  ) {}
+    userData: any;
 
-  ngOnInit(): void {}
+    constructor(
+        private userAuthService: UserAuthService,
+        private router: Router,
+        public userService: UserService
+    ) {
+        this.userData = this.userAuthService.getUserData();
+    }
 
-  public isLoggedIn() {
-    return this.userAuthService.isLoggedIn();
-  }
+    ngOnInit(): void { }
 
-  public logout() {
-    this.userAuthService.clear();
-    this.router.navigate(['/home']);
-  }
+    public isLoggedIn() {
+        return this.userAuthService.isLoggedIn();
+    }
 
+    public logout() {
+        this.userAuthService.clear();
+        this.router.navigate(['']);
+    }
 }

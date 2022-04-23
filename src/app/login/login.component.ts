@@ -29,25 +29,19 @@ export class LoginComponent implements OnInit {
 
     }
 
-    // login(){
-    //   if(this.loginForm.valid){
-    //     console.log(this.loginForm.value);
-    //   }
-    // }
-
 
     login() {
-        console.log(this.loginForm)
         this.userService.login(this.loginForm.value).subscribe(
             (response: any) => {
+                this.userAuthService.setUserData(response.user);
                 this.userAuthService.setRoles(response.user.roles);
                 this.userAuthService.setToken(response.jwtToken);
 
                 const role = response.user.roles[0].roleName;
                 if (role === 'Admin') {
-                    this.router.navigate(['/admin']);
+                    this.router.navigate([''], { skipLocationChange: true });
                 } else {
-                    this.router.navigate(['/user']);
+                    this.router.navigate([''], { skipLocationChange: true });
                 }
             },
             (error) => {

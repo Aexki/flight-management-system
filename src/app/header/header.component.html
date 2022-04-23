@@ -20,10 +20,20 @@
                 </li>
 
             </ul>
-            <button *ngIf="! isLoggedIn()" type="button" class="btn btn-success"
-                routerLink="/register">Register</button>
-            <button *ngIf="! isLoggedIn()" type="button" class="btn btn-success" routerLink="/login">Login</button>
-            <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">Logout</button>
+            <button mat-button *ngIf="! isLoggedIn()" style="color:white" routerLink="/login">Login</button>
+            <button mat-raised-button color="basic" *ngIf="! isLoggedIn()" routerLink="/register">SIGN UP</button>
+            <button mat-button *ngIf="isLoggedIn()" [matMenuTriggerFor]="beforeMenu" style="color: white">
+                <mat-icon> person_pin</mat-icon> Hello, {{
+                userData.username }}
+            </button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <!-- <button mat-menu-item>
+                    <mat-icon>dashboard</mat-icon> Profile
+                </button> -->
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon> cancel_presentation</mat-icon> Logout
+                </button>
+            </mat-menu>
         </div>
     </div>
 </nav>

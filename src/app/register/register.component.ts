@@ -10,7 +10,7 @@ import { UserService } from '../_services/user.service';
 })
 export class RegisterComponent implements OnInit {
     public addUserForm!: FormGroup;
-    constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+    constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
 
     ngOnInit(): void {
         this.addUserForm = this.formBuilder.group({
@@ -18,19 +18,19 @@ export class RegisterComponent implements OnInit {
             'lastName': ['', Validators.required],
             'username': ['', Validators.required],
             'mobile': ['', Validators.required],
-            'password': ['', Validators.required]
+            'password': ['', Validators.required],
+            'emailId': ['', Validators.required]
         })
     }
 
     addUser() {
-        console.log(this.addUserForm);
-        // this.userService.addUser(this.addUserForm.value).subscribe(
-        //     (response: any) => {
-        //         console.log(response);
-        //     },
-        //     (error) => {
-        //         console.log(error);
-        //     }
-        // );
+        this.userService.addUser(this.addUserForm.value).subscribe(
+            (response: any) => {
+                this.router.navigate(['login']);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
     }
 }

@@ -4,7 +4,7 @@
     <div class="card" style="padding: 20px; width: 500px">
         <div class="header my-5" style="text-align: center;">
             <h3>
-                Register User
+                <b>NEW SIGN UP</b>
             </h3>
         </div>
         <form (ngSubmit)="addUser()" [formGroup]="addUserForm">
@@ -16,10 +16,12 @@
                 formControlName="username">
             <input type="number" name="mobile" id="mobile" placeholder="Enter Mobile Number" class="form-control mb-3"
                 formControlName="mobile">
+            <input type="email" name="emailId" id="mobile" placeholder="Enter Email Address" class="form-control mb-3"
+                formControlName="emailId">
             <input type="password" name="userPassword" id="userPassword" placeholder="Enter password"
                 class="form-control mb-3" formControlName="password">
 
-            <input type="submit" value="Add User" class="btn btn-outline-primary form-control rounded-0">
+            <input type="submit" value="Sign Up" class="btn btn-outline-primary form-control rounded-0">
         </form>
     </div>
 </div>

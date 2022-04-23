@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserAuthService } from './user-auth.service';
 
@@ -9,6 +9,8 @@ export class UserService {
     PATH_OF_API = 'http://localhost:9090';
     PATH_OF_USER_SERVICE_API = ''
     PATH_OF_FLIGHT_DETAILS_API = 'http://localhost:8080/flights/'
+    PATH_OF_PASSENGER_DETAILS_API = 'http://localhost:8081/passengers/'
+    PATH_OF_BOOKING_API = 'http://localhost:8000/booking/'
 
     requestHeader = new HttpHeaders({ 'No-Auth': 'True', responseType: 'text' });
     constructor(
@@ -51,7 +53,7 @@ export class UserService {
     }
 
     public addUser(userData: any) {
-        return this.httpclient.post(this.PATH_OF_API + '/authenticate', userData, {
+        return this.httpclient.post(this.PATH_OF_API + '/registerNewUser', userData, {
             headers: this.requestHeader,
         });
     }
@@ -66,5 +68,24 @@ export class UserService {
         return this.httpclient.post(this.PATH_OF_FLIGHT_DETAILS_API, flightData, {
             headers: this.requestHeader
         });
+    }
+
+    public addPassenger(passengerData: any) {
+        return this.httpclient.post(this.PATH_OF_PASSENGER_DETAILS_API, passengerData, {
+            headers: this.requestHeader
+        });
+    }
+
+    public addNewBooking(bookingData: any) {
+        return this.httpclient.post(this.PATH_OF_BOOKING_API + 'createBooking', bookingData, {
+            headers: this.requestHeader
+        });
+    }
+
+    public searchFlight(flightData: any) {
+        let params = new HttpParams()
+            .set('source', flightData.source)
+            .set('destination', flightData.destination);
+        return this.httpclient.get(this.PATH_OF_FLIGHT_DETAILS_API + 'std', { params: params });
     }
 }
