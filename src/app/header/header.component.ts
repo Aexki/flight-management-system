@@ -22,7 +22,11 @@ export class HeaderComponent implements OnInit {
     ngOnInit(): void { }
 
     public isLoggedIn() {
-        return this.userAuthService.isLoggedIn();
+        let status = this.userAuthService.isLoggedIn();
+        if (status) {
+            this.userData = this.userAuthService.getUserData();
+        }
+        return status
     }
 
     public logout() {

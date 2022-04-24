@@ -41,6 +41,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { AirportDetailsComponent } from './airport-details/airport-details.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,8 @@ import { MatMenuModule } from '@angular/material/menu';
         DialogContentExampleDialog,
         BookingDetailsComponent,
         PaymentGatewayComponent,
-        BookingStatusComponent
+        BookingStatusComponent,
+        AirportDetailsComponent
     ],
     imports: [
         BrowserModule,

@@ -42,30 +42,29 @@ export class BookingStatusComponent implements OnInit {
     }
 
     async completeBookingProcess() {
-        await this.completePaymentProcess();
-
-        this.data['passenger-details'].forEach((p: any, index: Number) => {
-            p.passengerId = Number(this.finalBookingId + String(index))
-            this.savePassengerDetails(p);
-        })
-        this.message = 'Completing the booking Process';
-        this.userData = this.userAuthService.getUserData();
-        let d = new Date();
-        let body = {
-            "bookingId": Number(this.finalBookingId),
-            "bookingDate": d.getMonth() + '-' + ((d.getMonth() + 1) < 10) ? ('0' + (d.getMonth() + 1)) : (d.getMonth() + 1) + '-' + d.getFullYear(),
-            "noOfPassengers": this.data['passenger-details'].length,
-            "bookingUsername": this.userData['username'],
-            "flightNumber": this.data['flight-details'].flightNumber
-        };
-        this.bookFlight(body);
-    }
-
-    async completePaymentProcess() {
-        await setTimeout(() => {
-            this.message = 'Finalising the payment by ' + this.data.paymentMethod + ' method.'
+        this.message = 'Finalising the payment by ' + this.data.paymentMethod + ' method.'
+        setTimeout(() => {
+            this.message = 'Saving the passenger details.'
+            setTimeout(() => {
+                this.data['passenger-details'].forEach((p: any, index: Number) => {
+                    p.passengerId = Number(this.finalBookingId + String(index))
+                    this.savePassengerDetails(p);
+                })
+                this.message = 'Completing the booking Process';
+                setTimeout(() => {
+                    this.userData = this.userAuthService.getUserData();
+                    let d = new Date();
+                    let body = {
+                        "bookingId": Number(this.finalBookingId),
+                        "bookingDate": d.getMonth() + '-' + ((d.getMonth() + 1) < 10) ? ('0' + (d.getMonth() + 1)) : (d.getMonth() + 1) + '-' + d.getFullYear(),
+                        "noOfPassengers": this.data['passenger-details'].length,
+                        "bookingUsername": this.userData['username'],
+                        "flightNumber": this.data['flight-details'].flightNumber
+                    };
+                    this.bookFlight(body);
+                }, 3000);
+            }, 3000);
         }, 4000);
-        this.message = 'Saving the passenger details.'
     }
 
     async savePassengerDetails(data: any) {

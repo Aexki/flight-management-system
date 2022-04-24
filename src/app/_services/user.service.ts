@@ -11,6 +11,7 @@ export class UserService {
     PATH_OF_FLIGHT_DETAILS_API = 'http://localhost:8080/flights/'
     PATH_OF_PASSENGER_DETAILS_API = 'http://localhost:8081/passengers/'
     PATH_OF_BOOKING_API = 'http://localhost:8000/booking/'
+    PATH_OF_AIRPORT_API = 'http://localhost:9000/airport/'
 
     requestHeader = new HttpHeaders({ 'No-Auth': 'True', responseType: 'text' });
     constructor(
@@ -66,6 +67,24 @@ export class UserService {
 
     public addFlight(flightData: any) {
         return this.httpclient.post(this.PATH_OF_FLIGHT_DETAILS_API, flightData, {
+            headers: this.requestHeader
+        });
+    }
+
+    public deleteFlight(data: String) {
+        return this.httpclient.delete(this.PATH_OF_FLIGHT_DETAILS_API + 'delete/' + data, {
+            headers: this.requestHeader
+        });
+    }
+
+    public getAirports() {
+        return this.httpclient.get(this.PATH_OF_AIRPORT_API + 'allAirport', {
+            headers: this.requestHeader
+        });
+    }
+
+    public deleteAirport(data: String) {
+        return this.httpclient.delete(this.PATH_OF_AIRPORT_API + 'deleteAirport/' + data, {
             headers: this.requestHeader
         });
     }

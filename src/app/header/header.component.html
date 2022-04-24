@@ -11,6 +11,9 @@
                     <a class="nav-link active" aria-current="page" routerLink="/flight-details">All Flights</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/airport-details">All Airports</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/admin"
                         *ngIf="userService.roleMatch(['Admin'])">Admin Dashboard</a>
                 </li>
@@ -18,7 +21,6 @@
                     <a class="nav-link active" aria-current="page" routerLink="/user"
                         *ngIf="userService.roleMatch(['User'])">User Dashboard</a>
                 </li>
-
             </ul>
             <button mat-button *ngIf="! isLoggedIn()" style="color:white" routerLink="/login">Login</button>
             <button mat-raised-button color="basic" *ngIf="! isLoggedIn()" routerLink="/register">SIGN UP</button>
